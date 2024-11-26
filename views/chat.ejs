@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Realtime Chat</title>
+	</head>
+	<body>
+		<h1>Chat</h1>
+		<div id="chatBox">
+			<% messages.forEach((message) => { %>
+			<div>
+				<%=`[${new Date( message.createdAt ).toLocaleTimeString()}]
+				${message.senderName}: ${message.content}`%>
+			</div>
+			<% }); %>
+		</div>
+		<form id="messageForm" action="#">
+			<input
+				id="message"
+				type="text"
+				placeholder="Type your message"
+				required />
+			<button type="submit">Send</button>
+		</form>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			const chatId = "<%= chatId %>";
+			const userId = "<%= userId %>";
+			const senderName = "<%= senderName %>";
+		</script>
+		<script src="/js/chat.js"></script>
+	</body>
+</html>
